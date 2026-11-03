@@ -38,7 +38,14 @@ python -m unittest discover -s tests -v
 
 ## Publishing
 
-This repository contains a Python Flask application. GitHub Pages serves static websites and cannot run its Python backend; deploy the app to a Python host such as Render or Railway to make the interactive site public, then link that deployment from this repository.
+This project includes a Render Blueprint in `render.yaml`. To publish the interactive app:
+
+1. [Deploy this project to Render](https://render.com/deploy?repo=https://github.com/jana72006/hospital-system) and sign in or connect your GitHub account if asked.
+2. Select **New > Blueprint** and choose `jana72006/hospital-system`.
+3. Review the `hospital-system` free web service and select **Apply** to create and deploy it.
+4. Once the first deploy succeeds, open its `onrender.com` address. Later pushes to `main` deploy automatically.
+
+The Blueprint creates a private `SECRET_KEY` automatically. The free instance can spin down when idle, so the first visit may take about a minute. GitHub Pages cannot run the Python backend.
 
 ## Project structure
 

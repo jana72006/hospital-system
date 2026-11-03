@@ -22,6 +22,12 @@ class HospitalWebsiteTests(unittest.TestCase):
             self.assertIn(section, page)
         self.assertIn("This website is a learning project.", page)
 
+    def test_health_check_reports_ready(self):
+        response = self.client.get("/health")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json, {"status": "ok"})
+
     def test_appointment_request_confirms_demo_without_saving_it(self):
         response = self.client.post(
             "/appointments",
