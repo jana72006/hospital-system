@@ -12,7 +12,6 @@ app.config.update(
     SECRET_KEY=os.environ.get("SECRET_KEY") or secrets.token_hex(32),
     SESSION_COOKIE_HTTPONLY=True,
     SESSION_COOKIE_SAMESITE="Lax",
-    SESSION_COOKIE_SECURE=os.environ.get("RENDER") == "true",
 )
 
 DOCTORS = [
@@ -82,11 +81,6 @@ def home():
     )
 
 
-@app.get("/health")
-def health():
-    return {"status": "ok"}
-
-
 @app.post("/appointments")
 def request_appointment():
     doctor = next(
@@ -139,7 +133,7 @@ def request_product():
 
 if __name__ == "__main__":
     app.run(
-        host="0.0.0.0",
-        port=int(os.environ.get("PORT", "5000")),
+        host="127.0.0.1",
+        port=5000,
         debug=os.environ.get("FLASK_DEBUG") == "1",
     )

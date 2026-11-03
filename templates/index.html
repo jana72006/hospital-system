@@ -219,6 +219,34 @@
     document.querySelectorAll(".toast button").forEach((button) => {
       button.addEventListener("click", () => button.parentElement.remove());
     });
+    document.querySelectorAll("form[data-pages-demo]").forEach((form) => {
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const values = new FormData(form);
+        let message;
+        if (form.dataset.pagesDemo === "appointment") {
+          const doctor = form.elements.doctor.selectedOptions[0].textContent.split(" · ")[0];
+          const visitDate = form.elements.date.selectedOptions[0].textContent;
+          const time = form.elements.time.value;
+          message = `Demo request received for ${doctor} on ${visitDate} at ${time}. No appointment was booked or saved.`;
+        } else {
+          const product = form.closest(".product-card").querySelector("h3").textContent;
+          message = `Demo request received for ${values.get("quantity")} × ${product}. No order was placed or saved.`;
+        }
+
+        const toast = document.createElement("div");
+        toast.className = "toast toast-success";
+        const text = document.createElement("span");
+        text.textContent = message;
+        const dismiss = document.createElement("button");
+        dismiss.type = "button";
+        dismiss.setAttribute("aria-label", "Dismiss message");
+        dismiss.textContent = "×";
+        dismiss.addEventListener("click", () => toast.remove());
+        toast.append(text, dismiss);
+        document.querySelector(".toast-region").replaceChildren(toast);
+      });
+    });
   </script>
 </body>
 </html>
