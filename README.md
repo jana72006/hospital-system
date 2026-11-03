@@ -21,6 +21,14 @@ A polished, responsive hospital website built with Python and Flask as a student
 
 4. Open <http://127.0.0.1:5000>.
 
+## Tests
+
+Run the automated checks from the project directory:
+
+```powershell
+python -m unittest discover -s tests -v
+```
+
 ## Demo behavior
 
 - Appointment and pharmacy forms validate their selections and show a confirmation.
@@ -41,4 +49,6 @@ templates/
 static/
   styles.css
 requirements.txt
+tests/
+  test_app.py
 ```
