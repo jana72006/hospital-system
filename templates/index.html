@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5faf9">
+  <meta name="description" content="Thoughtful care, trusted doctors and easy appointment requests at Nile Hospital.">
+  <title>Nile Hospital | Care, made personal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="announcement">
+    <span class="announcement-dot"></span>
+    Here for you, every step of the way
+    <a href="#appointments">Request a visit <span aria-hidden="true">→</span></a>
+  </div>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Nile Hospital home">
+      <span class="brand-mark" aria-hidden="true"><span></span><span></span></span>
+      <span>Nile<span class="brand-light">Hospital</span><small>CARE THAT MOVES YOU</small></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation">☰</button>
+    <nav id="primary-navigation" class="navigation" aria-label="Main navigation">
+      <a href="#care">Our care</a>
+      <a href="#doctors">Our doctors</a>
+      <a href="#pharmacy">Pharmacy</a>
+      <a href="#about">About us</a>
+      <a class="nav-cta" href="#appointments">Book a visit <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero section-wrap" id="home">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-line"></span> A HEALTHIER YOU STARTS HERE</p>
+        <h1>Care that feels<br>closer to <span>home.</span></h1>
+        <p class="hero-description">Thoughtful people. Trusted expertise. A better healthcare experience, made around you.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#appointments">Make an appointment <span aria-hidden="true">↗</span></a>
+          <a class="text-link" href="#care"><span class="play-icon" aria-hidden="true">↓</span> Explore our services</a>
+        </div>
+        <div class="hero-proof">
+          <div class="avatar-stack" aria-hidden="true"><span>✦</span><span>✧</span><span>✿</span><span>+</span></div>
+          <p>Care is a team effort.<br><strong>Meet the people behind yours.</strong></p>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-photo" role="img" aria-label="A doctor talking with a patient"></div>
+        <div class="photo-badge"><span class="badge-icon">✚</span><span><strong>Here when it matters</strong><small>Friendly, thoughtful care</small></span></div>
+        <div class="hero-caption"><span class="caption-dot"></span> A little more human, by design</div>
+        <span class="decor decor-one" aria-hidden="true">✳</span>
+        <span class="decor decor-two" aria-hidden="true">✳</span>
+      </div>
+      <div class="hero-scroll"><span></span> SCROLL TO DISCOVER</div>
+    </section>
+
+    <section class="trust-strip" aria-label="Hospital highlights">
+      <div><strong>01</strong><span>People-first<br>care</span></div>
+      <div><strong>02</strong><span>Trusted medical<br>team</span></div>
+      <div><strong>03</strong><span>Care in one<br>connected place</span></div>
+      <div class="trust-note">Your wellbeing is<br><em>always the priority.</em></div>
+    </section>
+
+    <section class="section section-wrap care-section" id="care">
+      <div class="section-heading">
+        <div><p class="eyebrow">HOW WE CAN HELP</p><h2>Good care, all<br>in one place.</h2></div>
+        <p class="section-intro">From your first question to your next appointment, we make it easier to find the support you need.</p>
+      </div>
+      <div class="service-grid">
+        <a class="service-card service-featured" href="#appointments">
+          <span class="service-icon">✚</span><span class="card-arrow">↗</span>
+          <span class="service-number">01 / PERSONAL CARE</span><h3>Appointments</h3>
+          <p>Find a specialist and request a visit that works for you.</p>
+          <span class="service-link">Find your doctor <span>→</span></span>
+        </a>
+        <a class="service-card" href="#doctors">
+          <span class="service-icon service-icon-blue">✧</span><span class="card-arrow">↗</span>
+          <span class="service-number">02 / OUR PEOPLE</span><h3>Our doctors</h3>
+          <p>Meet compassionate experts across a range of specialties.</p>
+          <span class="service-link">Meet the team <span>→</span></span>
+        </a>
+        <a class="service-card" href="#pharmacy">
+          <span class="service-icon service-icon-peach">✿</span><span class="card-arrow">↗</span>
+          <span class="service-number">03 / EVERYDAY WELLNESS</span><h3>Pharmacy</h3>
+          <p>Explore everyday essentials from our pharmacy collection.</p>
+          <span class="service-link">Browse essentials <span>→</span></span>
+        </a>
+        <a class="service-card" href="#wellness">
+          <span class="service-icon service-icon-lilac">❋</span><span class="card-arrow">↗</span>
+          <span class="service-number">04 / A LITTLE SELF-CARE</span><h3>Skin & beauty</h3>
+          <p>Discover simple skincare and beauty favourites.</p>
+          <span class="service-link">Explore the edit <span>→</span></span>
+        </a>
+      </div>
+    </section>
+
+    <section class="doctor-section" id="doctors">
+      <div class="section-wrap">
+        <div class="section-heading">
+          <div><p class="eyebrow">GOOD PEOPLE. GREAT CARE.</p><h2>Meet your care team.</h2></div>
+          <a class="text-link dark-link" href="#appointments">Find a specialist <span>↗</span></a>
+        </div>
+        <div class="doctor-grid">
+          {% for doctor in doctors %}
+          <article class="doctor-card">
+            <div class="doctor-portrait portrait-{{ loop.index }}"><span>{{ doctor.icon }}</span><small>NH</small></div>
+            <div class="doctor-info"><h3>{{ doctor.name }}</h3><p>{{ doctor.specialty }}</p></div>
+            <a href="#appointments" class="doctor-arrow" aria-label="Request an appointment with {{ doctor.name }}">↗</a>
+          </article>
+          {% endfor %}
+        </div>
+        <p class="demo-note">Doctor names and services are part of a student project demo, not a live medical directory.</p>
+      </div>
+    </section>
+
+    <section class="section section-wrap appointment-section" id="appointments">
+      <div class="appointment-copy">
+        <p class="eyebrow">YOUR NEXT STEP</p>
+        <h2>Let's find a time<br>that works for you.</h2>
+        <p>Choose a doctor and a sample time to try the appointment request. No personal details are needed.</p>
+        <div class="appointment-promise"><span>✓</span><span><strong>Simple by design</strong><small>This demo does not book real appointments.</small></span></div>
+        <div class="appointment-art" aria-hidden="true"><span>✳</span><i></i><b></b></div>
+      </div>
+      <form class="appointment-form" method="post" action="{{ url_for('request_appointment') }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <div class="form-heading"><span class="step-number">01</span><div><h3>Request a visit</h3><p>Pick a specialist and a sample opening.</p></div></div>
+        <label for="doctor">Choose a doctor</label>
+        <select id="doctor" name="doctor" required>
+          <option value="" disabled selected>Select a specialist</option>
+          {% for doctor in doctors %}<option value="{{ doctor.id }}">{{ doctor.name }} · {{ doctor.specialty }}</option>{% endfor %}
+        </select>
+        <div class="form-row">
+          <div><label for="date">Preferred date</label><select id="date" name="date" required><option value="" disabled selected>Select a date</option>{% for day in appointment_days %}<option value="{{ day.isoformat() }}">{{ day.strftime('%a, %b %d') }}</option>{% endfor %}</select></div>
+          <div><label for="time">Available time</label><select id="time" name="time" required><option value="" disabled selected>Select a time</option>{% for time in appointment_times %}<option value="{{ time }}">{{ time }}</option>{% endfor %}</select></div>
+        </div>
+        <button class="button button-primary form-submit" type="submit">Send demo request <span aria-hidden="true">↗</span></button>
+        <p class="form-footnote">For this project demo only. No booking or data storage takes place.</p>
+      </form>
+    </section>
+
+    <section class="shop-section" id="pharmacy">
+      <div class="section-wrap">
+        <div class="section-heading">
+          <div><p class="eyebrow">LITTLE THINGS THAT HELP</p><h2>Everyday essentials.</h2></div>
+          <a class="text-link dark-link" href="#wellness">A little more self-care <span>↗</span></a>
+        </div>
+        <div class="product-grid">
+          {% for product in pharmacy_products %}
+          <article class="product-card">
+            <div class="product-art product-{{ product.color }}"><span>{{ product.icon }}</span><small>NH / CARE</small><span class="product-plus">+</span></div>
+            <p class="product-category">{{ product.category }}</p><h3>{{ product.name }}</h3>
+            <div class="product-bottom"><span>{{ product.price }}</span>
+              <form method="post" action="{{ url_for('request_product') }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="product" value="{{ product.id }}">
+                <input type="hidden" name="quantity" value="1">
+                <button type="submit" class="add-button" aria-label="Request {{ product.name }}">+</button>
+              </form>
+            </div>
+          </article>
+          {% endfor %}
+        </div>
+        <p class="demo-note">Illustrative project catalog only. Prices and products are examples—not medical advice or a real pharmacy offer.</p>
+      </div>
+    </section>
+
+    <section class="wellness-section section-wrap" id="wellness">
+      <div class="wellness-image" role="img" aria-label="A calm, light-filled wellness space">
+        <div class="wellness-sticker">A MOMENT<br>FOR YOU <span>✿</span></div>
+      </div>
+      <div class="wellness-copy">
+        <p class="eyebrow">A LITTLE SPACE TO RESET</p><h2>Wellness looks<br>different on everyone.</h2>
+        <p>Explore a small, thoughtful edit of skincare and beauty favourites. Because feeling good is part of feeling well.</p>
+        <div class="beauty-list">{% for product in beauty_products %}
+          <div class="beauty-item"><span class="beauty-icon beauty-{{ product.color }}">{{ product.icon }}</span><span><strong>{{ product.name }}</strong><small>{{ product.category }}</small></span><span class="beauty-price">{{ product.price }}</span></div>
+        {% endfor %}</div>
+        <p class="demo-note">Sample products for demonstration only. No orders are processed.</p>
+      </div>
+    </section>
+
+    <section class="about-section" id="about">
+      <div class="section-wrap about-inner">
+        <div><p class="eyebrow">A NOTE FROM OUR TEAM</p><h2>Healthcare should<br>feel more human.</h2></div>
+        <div class="about-copy"><p>Nile Hospital is a student project built around one simple idea: finding care should feel less complicated. We bring appointments, a doctor directory, and everyday wellness into one welcoming place.</p><p>This website is a learning project. It is not connected to a hospital, pharmacy, or medical booking service.</p><a class="button button-light" href="#care">Explore the website <span aria-hidden="true">↗</span></a></div>
+        <div class="about-mark" aria-hidden="true">N<span>✳</span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand footer-brand" href="#home"><span class="brand-mark" aria-hidden="true"><span></span><span></span></span><span>Nile<span class="brand-light">Hospital</span><small>CARE THAT MOVES YOU</small></span></a>
+    <p>A student project made with care.<br><span>Not a real medical service.</span></p>
+    <a href="#home" class="back-top">Back to top ↑</a>
+    <div class="footer-bottom"><span>© 2026 Nile Hospital Project</span><span>Built for learning · Powered by Python & Flask</span></div>
+  </footer>
+
+  <div class="toast-region" aria-live="polite">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}<div class="toast toast-{{ category }}"><span>{{ message }}</span><button type="button" aria-label="Dismiss message">×</button></div>{% endfor %}
+    {% endwith %}
+  </div>
+  <script>
+    const menuButton = document.querySelector(".menu-toggle");
+    const navigation = document.querySelector(".navigation");
+    menuButton.addEventListener("click", () => {
+      const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+      menuButton.setAttribute("aria-expanded", String(!isOpen));
+      navigation.classList.toggle("navigation-open", !isOpen);
+    });
+    navigation.addEventListener("click", (event) => {
+      if (event.target.closest("a")) {
+        menuButton.setAttribute("aria-expanded", "false");
+        navigation.classList.remove("navigation-open");
+      }
+    });
+    document.querySelectorAll(".toast button").forEach((button) => {
+      button.addEventListener("click", () => button.parentElement.remove());
+    });
+  </script>
+</body>
+</html>
