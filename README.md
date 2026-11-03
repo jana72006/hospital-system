@@ -38,14 +38,28 @@ python -m unittest discover -s tests -v
 
 ## Publishing
 
-This project includes a Render Blueprint in `render.yaml`. To publish the interactive app:
+### PythonAnywhere (without Render)
 
-1. [Deploy this project to Render](https://render.com/deploy?repo=https://github.com/jana72006/hospital-system) and sign in or connect your GitHub account if asked.
-2. Select **New > Blueprint** and choose `jana72006/hospital-system`.
-3. Review the `hospital-system` free web service and select **Apply** to create and deploy it.
-4. Once the first deploy succeeds, open its `onrender.com` address. Later pushes to `main` deploy automatically.
+1. Create a free [PythonAnywhere Beginner account](https://www.pythonanywhere.com/registration/register/beginner/).
+2. Open a **Bash console** and download the public project:
 
-The Blueprint creates a private `SECRET_KEY` automatically. The free instance can spin down when idle, so the first visit may take about a minute. GitHub Pages cannot run the Python backend.
+   ```bash
+   git clone https://github.com/jana72006/hospital-system.git
+   mkvirtualenv --python=/usr/bin/python3.13 hospital-system-venv
+   workon hospital-system-venv
+   pip install -r ~/hospital-system/requirements.txt
+   ```
+
+3. In **Web**, select **Add a new web app**, then **Manual configuration** and the same Python version as your virtual environment. Your public website address will be shown on that page.
+4. In the web app's **Virtualenv** section, enter `~/.virtualenvs/hospital-system-venv`.
+5. Open the **WSGI configuration file** linked on the Web page. Replace its contents with the example from `pythonanywhere_wsgi.py`, changing `YOUR_PYTHONANYWHERE_USERNAME` to your username. Generate a private key in the Bash console with `python -c "import secrets; print(secrets.token_hex(32))"` and replace `REPLACE_WITH_A_RANDOM_SECRET` in the WSGI configuration. **Do not put the real key in GitHub or share it.**
+6. Select **Reload** in the Web tab and visit the public website address shown there.
+
+After later GitHub updates, run `cd ~/hospital-system && git pull` in the Bash console and select **Reload** again. PythonAnywhere free accounts limit the number of web apps and restrict outbound internet access; this project does not require server-side external network requests.
+
+### Optional: Render
+
+The repository also includes `render.yaml` for deployment to Render. The PythonAnywhere steps above do not require Render or GitHub Pages.
 
 ## Project structure
 
@@ -56,6 +70,8 @@ templates/
 static/
   styles.css
 requirements.txt
+pythonanywhere_wsgi.py
+render.yaml
 tests/
   test_app.py
 ```
